@@ -76,3 +76,7 @@ api/vi/employee-type/{employee_type_id} | GET | Get Employee-type with given Id
 api/vi/employee-type | POST |  Insert a new Employee-type
 api/vi/employee-type/{employee_type_id} | PUT | Update a Employee-type having Id
 api/vi/employee-type/{employee_type_id} | DELETE | Delete a Employee-type having Id
+
+
+* Perform following tasks on completion:
+    * Remove unwanted imports.

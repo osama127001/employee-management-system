@@ -19,12 +19,12 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @PostMapping("/")
-    public ResponseEntity<Employee> insertEmployee(@RequestBody Employee employee) {
-        Optional<Employee> optionalEmployee = employeeService.insertEmployee(employee);
-        return optionalEmployee.isPresent()
-                ? ResponseEntity.ok(optionalEmployee.get())
-                : ResponseEntity.badRequest().build();
-    }
+//    @PostMapping("/")
+//    public ResponseEntity<Employee> insertEmployee(@RequestBody Employee employee) {
+//        Optional<Employee> optionalEmployee = employeeService.insertEmployee(employee);
+//        return optionalEmployee.isPresent()
+//                ? ResponseEntity.ok(optionalEmployee.get())
+//                : ResponseEntity.badRequest().build();
+//    }
 
 }

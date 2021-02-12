@@ -1,17 +1,25 @@
 package com.employee.ems.dao.interfaces;
 
+import com.employee.ems.model.Project;
+import org.hibernate.SessionFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
-public interface GenericRepository<Entity, ID> {
+public interface GenericRepository<T> {
 
-    public List<Entity> getAllEntities();
+    public List<T> getAllEntities(Class<T> projectClass);
 
-    public Optional<Entity> getEntityById();
+    public Optional<T> getEntityById(Class<T> projectClass, UUID id);
 
-    public Optional<Entity> insertEntity(ID entityId, Entity entityObject);
+    public Optional<Serializable> insertEntity(T entityObject);
 
-    public Optional<Entity> updateEntity(ID entityId, Entity updatedEntityObject);
+    public Optional<T> updateEntity(UUID entityId, T updatedEntityObject);
 
-    public Optional<Entity> deleteEntity(ID entityId);
+    public Optional<T> deleteEntity(UUID entityId);
+
 }
