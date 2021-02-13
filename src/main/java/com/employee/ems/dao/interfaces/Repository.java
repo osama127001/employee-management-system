@@ -1,19 +1,16 @@
 package com.employee.ems.dao.interfaces;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Optional;
 
 public interface Repository<T> {
 
-    public List<T> getAllEntities(Class<T> projectClass);
+    public abstract T getEntityById(Class<T> projectClass, String id);
 
-    public T getEntityById(Class<T> projectClass, String id);
+    public abstract Optional<Serializable> insertEntity(T entityObject);
 
-    public Optional<Serializable> insertEntity(T entityObject);
+    public abstract boolean updateEntity(String entityId, T updatedEntityObject);
 
-    public boolean updateEntity(String entityId, T updatedEntityObject);
-
-    public boolean deleteEntity(Class<T> entityClass, String entityId);
+    public abstract boolean deleteEntity(Class<T> entityClass, String entityId);
 
 }

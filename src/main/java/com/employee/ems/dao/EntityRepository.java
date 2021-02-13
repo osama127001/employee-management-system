@@ -9,32 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Optional;
 
 @org.springframework.stereotype.Repository
-public class EntityRepository<T> implements Repository<T> {
+public abstract class EntityRepository<T> implements Repository<T> {
 
-    private final SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
+
+    public EntityRepository() {}
 
     @Autowired
     public EntityRepository(EntityManagerFactory factory) {
         this.sessionFactory = factory.unwrap(SessionFactory.class);
     }
 
-    @Override
-    @Transactional
-    public List<T> getAllEntities(Class<T> entityClass) {
-        String hql = "From " + entityClass.getSimpleName();
-        try {
-            return sessionFactory.openSession()
-                    .createQuery(hql, entityClass)
-                    .list();
-        } catch (Exception exp) {
-            exp.printStackTrace();
-        }
-        return null;
-    }
 
     @Override
     @Transactional

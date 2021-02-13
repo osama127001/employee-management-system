@@ -1,6 +1,6 @@
 package com.employee.ems.service;
 
-import com.employee.ems.dao.EntityRepository;
+import com.employee.ems.dao.OfficeRepository;
 import com.employee.ems.model.Office;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,23 +13,23 @@ import java.util.UUID;
 @Service
 public class OfficeService {
 
-    private final EntityRepository<Office> entityRepository;
+    private final OfficeRepository officeRepository;
 
     @Autowired
-    public OfficeService(EntityRepository<Office> entityRepository) {
-        this.entityRepository = entityRepository;
+    public OfficeService(OfficeRepository officeRepository) {
+        this.officeRepository = officeRepository;
     }
 
     public List<Office> getOffices() {
-        return entityRepository.getAllEntities(Office.class);
+        return officeRepository.getAllEntities();
     }
 
     public Office getOffice(String id) {
-        return entityRepository.getEntityById(Office.class, id);
+        return officeRepository.getEntityById(Office.class, id);
     }
 
     public Optional<Serializable> saveOffice(Office office) {
-        return entityRepository.insertEntity(
+        return officeRepository.insertEntity(
                 new Office(
                         UUID.randomUUID().toString(),
                         office.getName(),
@@ -39,7 +39,7 @@ public class OfficeService {
     }
 
     public boolean updateOffice(String id, Office office) {
-        return entityRepository.updateEntity(id, new Office(
+        return officeRepository.updateEntity(id, new Office(
                 id,
                 office.getName(),
                 office.getCapacity()
@@ -47,6 +47,6 @@ public class OfficeService {
     }
 
     public boolean deleteOffice(String id) {
-        return entityRepository.deleteEntity(Office.class, id);
+        return officeRepository.deleteEntity(Office.class, id);
     }
 }
