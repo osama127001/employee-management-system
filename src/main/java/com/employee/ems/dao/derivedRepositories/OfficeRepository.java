@@ -1,5 +1,6 @@
-package com.employee.ems.dao;
+package com.employee.ems.dao.derivedRepositories;
 
+import com.employee.ems.dao.EntityRepository;
 import com.employee.ems.model.Office;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,12 +15,11 @@ public class OfficeRepository extends EntityRepository<Office> {
 
     private final JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public OfficeRepository(EntityManagerFactory factory, JdbcTemplate jdbcTemplate) {
         super(factory);
         this.jdbcTemplate = jdbcTemplate;
     }
-
-    @Autowired
 
 
     @Transactional

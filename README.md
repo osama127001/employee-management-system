@@ -11,6 +11,14 @@ Following [Resource](https://www.softwareideas.net/a/1565/Employee-Management-Sy
 
 <h1 align="center"> Mappings </h1>
 
+## Application Class Diagram
+
+### Note
+* `Press E to expand package in Class diagmram`
+* `Use the following tool-bar to show dependencies and other settings.`
+![UML toolbar](image/uml_tools.png)
+
+
 ### Employee Mappings
 Following are the Endpoints for `Employee`:
 

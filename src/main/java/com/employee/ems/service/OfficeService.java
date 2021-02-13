@@ -1,6 +1,6 @@
 package com.employee.ems.service;
 
-import com.employee.ems.dao.OfficeRepository;
+import com.employee.ems.dao.derivedRepositories.OfficeRepository;
 import com.employee.ems.model.Office;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
