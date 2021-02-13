@@ -7,14 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.UUID;
 
 @Entity
 @Table(name = "employee_type")
 public class EmployeeType implements Serializable {
 
     @Id
-    private final UUID id;
+    private final String id;
 
     @Column(name = "name")
     private final String name;
@@ -22,8 +21,14 @@ public class EmployeeType implements Serializable {
     @Column(name = "description")
     private final String description;
 
+    public EmployeeType() {
+        this.id = null;
+        this.name = null;
+        this.description = null;
+    }
+
     public EmployeeType(
-            @JsonProperty("id") UUID id,
+            @JsonProperty("id") String id,
             @JsonProperty("name") String name,
             @JsonProperty("description") String description
     ) {
@@ -32,7 +37,7 @@ public class EmployeeType implements Serializable {
         this.description = description;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
