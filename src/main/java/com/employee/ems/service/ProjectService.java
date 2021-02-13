@@ -26,7 +26,8 @@ public class ProjectService {
     }
 
     public Optional<Project> getProject(UUID id) {
-        return genericRepository.getEntityById(Project.class, id);
+        ///return genericRepository.getEntityById(Project.class, id);
+        return Optional.empty();
     }
 
     public Optional<Serializable> saveProject(Project project) {

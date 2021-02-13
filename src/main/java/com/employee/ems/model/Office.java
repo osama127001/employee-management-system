@@ -7,14 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.UUID;
 
 @Entity
 @Table(name = "office")
 public class Office implements Serializable {
 
     @Id
-    private final UUID id;
+    @Column(name = "id")
+    private final String id;
 
     @Column(name = "name")
     private final String name;
@@ -22,8 +22,14 @@ public class Office implements Serializable {
     @Column(name = "capacity")
     private final Integer capacity;
 
+    public Office(){
+        this.id = null;
+        this.name = null;
+        this.capacity = null;
+    }
+
     public Office(
-            @JsonProperty("id") UUID id,
+            @JsonProperty("id") String id,
             @JsonProperty("name") String name,
             @JsonProperty("capacity") Integer capacity
     ) {
@@ -32,7 +38,7 @@ public class Office implements Serializable {
         this.capacity = capacity;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
@@ -42,5 +48,14 @@ public class Office implements Serializable {
 
     public Integer getCapacity() {
         return capacity;
+    }
+
+    @Override
+    public String toString() {
+        return "Office{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", capacity=" + capacity +
+                '}';
     }
 }

@@ -1,3 +1,6 @@
+-- SOURCE /Users/khannosa/Desktop/ems/script/employee_db_script.sql
+
+
 DROP SCHEMA IF EXISTS `db_employee`;
 CREATE SCHEMA `db_employee`;
 use `db_employee`;
@@ -5,7 +8,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee` (
-  `id` varchar(50) NOT NULL,
+  `id` varchar(64) NOT NULL,
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `dob` datetime NOT NULL,
@@ -23,7 +26,7 @@ CREATE TABLE `employee` (
   CONSTRAINT `FK_OFFICE` FOREIGN KEY (`office_id`) REFERENCES `office` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_EMPLOYEE_TYPE` FOREIGN KEY (`work_position_id`) REFERENCES `employee_type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_MANAGER` FOREIGN KEY (`supervisor_id`) REFERENCES `employee` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `department`;
 CREATE TABLE `department` (
@@ -31,7 +34,7 @@ CREATE TABLE `department` (
   `name` varchar(50) NOT NULL,
   `description` varchar(500) NOT NULL,
   PRIMARY KEY (`id`)
-);
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `project`;
 CREATE TABLE `project` (
@@ -39,7 +42,7 @@ CREATE TABLE `project` (
   `name` varchar(50) NOT NULL,
   `description` varchar(500) NOT NULL,
   PRIMARY KEY (`id`)
-);
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `employee_type`;
 CREATE TABLE `employee_type` (
@@ -47,7 +50,7 @@ CREATE TABLE `employee_type` (
   `name` varchar(50) NOT NULL,
   `description` varchar(500) NOT NULL,
   PRIMARY KEY (`id`)
-);
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `office`;
 CREATE TABLE `office` (
@@ -55,7 +58,7 @@ CREATE TABLE `office` (
   `name` varchar(50) NOT NULL,
   `capacity` int(15) NOT NULL,
   PRIMARY KEY (`id`)
-);
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `employee_project`;
 CREATE TABLE `employee_project` (
@@ -64,7 +67,7 @@ CREATE TABLE `employee_project` (
   PRIMARY KEY (`project_id`, `employee_id`),
   CONSTRAINT `FK_EMPLOYEE-MTM` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_PROJECT-MTM` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 
