@@ -50,6 +50,7 @@ public class Office implements Serializable {
         return capacity;
     }
 
+
     @Override
     public String toString() {
         return "Office{" +

@@ -37,4 +37,16 @@ public class OfficeService {
                 )
         );
     }
+
+    public boolean updateOffice(String id, Office office) {
+        return entityRepository.updateEntity(id, new Office(
+                id,
+                office.getName(),
+                office.getCapacity()
+        ));
+    }
+
+    public boolean deleteOffice(String id) {
+        return entityRepository.deleteEntity(Office.class, id);
+    }
 }

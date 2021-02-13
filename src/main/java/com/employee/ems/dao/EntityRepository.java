@@ -77,14 +77,45 @@ public class EntityRepository<T> implements GenericRepository<T> {
     }
 
     @Override
-    @Transactional
-    public Optional<T> updateEntity(UUID entityId, T updatedEntityObject) {
-        return Optional.empty();
+    public boolean updateEntity(String entityId, T updatedEntityObject) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.update(updatedEntityObject);
+            tx.commit();
+            return true;
+        } catch (Exception exp) {
+            tx.rollback();
+            System.out.println(
+                    exp.getMessage()
+            );
+            exp.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return false;
     }
 
     @Override
     @Transactional
-    public Optional<T> deleteEntity(UUID entityId) {
-        return Optional.empty();
+    public boolean deleteEntity(Class<T> entityClass, String entityId) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.remove(session.get(entityClass, entityId));
+            tx.commit();
+            return true;
+        } catch (Exception exp) {
+            tx.rollback();
+            System.out.println(
+                    exp.getMessage()
+            );
+            exp.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return false;
     }
 }

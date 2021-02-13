@@ -13,8 +13,8 @@ public interface GenericRepository<T> {
 
     public Optional<Serializable> insertEntity(T entityObject);
 
-    public Optional<T> updateEntity(UUID entityId, T updatedEntityObject);
+    public boolean updateEntity(String entityId, T updatedEntityObject);
 
-    public Optional<T> deleteEntity(UUID entityId);
+    public boolean deleteEntity(Class<T> entityClass, String entityId);
 
 }

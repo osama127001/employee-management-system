@@ -68,4 +68,26 @@ public class OfficeController {
                 .body(new ErrorMessage("Cannot save the object"));
     }
 
+
+    @PutMapping("/{office_id}")
+    public ResponseEntity<?> updateOffice(@RequestBody Office office, @PathVariable("office_id") String id) {
+        if (officeService.updateOffice(id, office)) {
+            return ResponseEntity
+                    .status(HttpStatus.OK).build();
+        }
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST).body(new ErrorMessage("Cannot Update Entity"));
+    }
+
+
+    @DeleteMapping("/{office_id}")
+    public ResponseEntity<?> deleteOffice(@PathVariable("office_id") String id) {
+        if (officeService.deleteOffice(id)) {
+            return ResponseEntity
+                    .status(HttpStatus.OK).build();
+        }
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST).body(new ErrorMessage("Cannot Delete Entity"));
+    }
+
 }
