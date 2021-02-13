@@ -3,9 +3,8 @@ package com.employee.ems.dao.interfaces;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
-public interface GenericRepository<T> {
+public interface Repository<T> {
 
     public List<T> getAllEntities(Class<T> projectClass);
 

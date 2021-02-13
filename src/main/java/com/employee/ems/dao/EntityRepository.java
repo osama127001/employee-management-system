@@ -1,21 +1,19 @@
 package com.employee.ems.dao;
 
-import com.employee.ems.dao.interfaces.GenericRepository;
+import com.employee.ems.dao.interfaces.Repository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
-@Repository
-public class EntityRepository<T> implements GenericRepository<T> {
+@org.springframework.stereotype.Repository
+public class EntityRepository<T> implements Repository<T> {
 
     private final SessionFactory sessionFactory;
 
