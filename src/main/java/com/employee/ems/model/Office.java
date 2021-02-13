@@ -13,7 +13,6 @@ import java.io.Serializable;
 public class Office implements Serializable {
 
     @Id
-    @Column(name = "id")
     private final String id;
 
     @Column(name = "name")
