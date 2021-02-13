@@ -63,7 +63,7 @@ public abstract class EntityRepository<T> implements Repository<T> {
     }
 
     @Override
-    public boolean updateEntity(String entityId, T updatedEntityObject) {
+    public boolean updateEntity(T updatedEntityObject) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {

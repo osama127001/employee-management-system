@@ -39,7 +39,7 @@ public class OfficeService {
     }
 
     public boolean updateOffice(String id, Office office) {
-        return officeRepository.updateEntity(id, new Office(
+        return officeRepository.updateEntity(new Office(
                 id,
                 office.getName(),
                 office.getCapacity()

@@ -9,7 +9,7 @@ public interface Repository<T> {
 
     public abstract Optional<Serializable> insertEntity(T entityObject);
 
-    public abstract boolean updateEntity(String entityId, T updatedEntityObject);
+    public abstract boolean updateEntity(T updatedEntityObject);
 
     public abstract boolean deleteEntity(Class<T> entityClass, String entityId);
 

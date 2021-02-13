@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManagerFactory;
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 public class DepartmentRepository extends EntityRepository<Department> {
@@ -18,4 +20,23 @@ public class DepartmentRepository extends EntityRepository<Department> {
         super(factory);
         this.jdbcTemplate = jdbcTemplate;
     }
+
+    @Transactional
+    public List<Department> getAllEntities() {
+        String sql = "SELECT * FROM department";
+        try {
+            return jdbcTemplate.query(
+                    sql,
+                    (resultSet, rowNum) -> new Department(
+                            resultSet.getString("id"),
+                            resultSet.getString("name"),
+                            resultSet.getString("description")
+                    )
+            );
+        } catch (Exception exp) {
+            exp.printStackTrace();
+        }
+        return null;
+    }
+
 }
