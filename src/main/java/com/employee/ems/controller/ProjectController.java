@@ -49,6 +49,8 @@ public class ProjectController {
         return getResponseEntity(optionalUpdateProject);
     }
 
+
+
     @DeleteMapping("/{project_id}")
     public ResponseEntity<?> deleteProject(@PathVariable("project_id") String id) {
         Optional<Boolean> optionalUpdateProject = Optional.of(projectService.deleteProject(id));

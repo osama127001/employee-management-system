@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,7 +14,7 @@ import java.util.UUID;
 public class Employee implements Serializable {
 
     @Id
-    private final UUID id;
+    private final String id;
 
     @Column(name = "first_name")
     private final String firstName;
@@ -64,8 +65,21 @@ public class Employee implements Serializable {
     private List<Project> projects;
 
 
+    public Employee() {
+        this.id = null;
+        this.firstName = null;
+        this.lastName = null;
+        this.dob = null;
+        this.cv = null;
+        this.salary = 0.0d;
+        this.isActive = false;
+        this.availableLeaveDaysPerYear = null;
+        this.availableSickDaysPerYear = null;
+    }
+
+
     public Employee(
-            @JsonProperty("id") UUID id,
+            @JsonProperty("id") String id,
             @JsonProperty("firstName") String firstName,
             @JsonProperty("lastName") String lastName,
             @JsonProperty("dob") LocalDateTime dob,
@@ -86,7 +100,7 @@ public class Employee implements Serializable {
         this.availableSickDaysPerYear = availableSickDaysPerYear;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
@@ -116,6 +130,13 @@ public class Employee implements Serializable {
 
     public Integer getAvailableSickDaysPerYear() {
         return availableSickDaysPerYear;
+    }
+
+    public void assignProject(Project project) {
+        if (projects == null) {
+            projects = new ArrayList<>();
+        }
+        projects.add(project);
     }
 
     @Override

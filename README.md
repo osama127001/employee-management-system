@@ -41,7 +41,7 @@ api/vi/project | GET | Get All Projects
 api/vi/project/{project_id} | GET | Get Project with given Id
 api/vi/project | POST |  Insert a new Project
 api/vi/project/{project_id} | PUT | Update a Project having Id
-api/vi/project/{project_id}/{employee_id} | PUT | Add employee to a project
+api/vi/project/{employee_id}/{project_id} | PUT | Add employee to a project
 api/vi/project/{project_id} | DELETE | Delete a Project having Id
 
 
