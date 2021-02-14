@@ -1,13 +1,14 @@
 package com.employee.ems.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "employee")
@@ -23,7 +24,8 @@ public class Employee implements Serializable {
     private final String lastName;
 
     @Column(name = "dob")
-    private final LocalDateTime dob;
+    @JsonFormat(pattern="dd-MM-yyyy")
+    private final Date dob;
 
     @Column(name = "cv")
     private final String cv;
@@ -45,11 +47,11 @@ public class Employee implements Serializable {
     private Office office;
 
     @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-    @JoinColumn(name = "department_id ")
+    @JoinColumn(name = "department_id")
     private Department department;
 
     @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-    @JoinColumn(name = "work_position_id ")
+    @JoinColumn(name = "work_position_id")
     private EmployeeType employeeType;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -82,7 +84,7 @@ public class Employee implements Serializable {
             @JsonProperty("id") String id,
             @JsonProperty("firstName") String firstName,
             @JsonProperty("lastName") String lastName,
-            @JsonProperty("dob") LocalDateTime dob,
+            @JsonProperty("dob") Date dob,
             @JsonProperty("cv") String cv,
             @JsonProperty("salary") double salary,
             @JsonProperty("isActive") boolean isActive,
@@ -112,7 +114,11 @@ public class Employee implements Serializable {
         return lastName;
     }
 
-    public LocalDateTime getDob() {
+    public String getCv() {
+        return cv;
+    }
+
+    public Date getDob() {
         return dob;
     }
 
