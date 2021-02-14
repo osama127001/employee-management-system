@@ -1,9 +1,11 @@
 package com.employee.ems.dao.interfaces;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Optional;
 
 public interface Repository<T> {
+
 
     public abstract T getEntityById(Class<T> projectClass, String id);
 

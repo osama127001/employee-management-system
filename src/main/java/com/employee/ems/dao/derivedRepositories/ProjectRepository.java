@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManagerFactory;
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 public class ProjectRepository extends EntityRepository<Project> {
@@ -18,4 +20,24 @@ public class ProjectRepository extends EntityRepository<Project> {
         super(factory);
         this.jdbcTemplate = jdbcTemplate;
     }
+
+
+    @Transactional
+    public List<Project> getAllEntities() {
+        String sql = "SELECT * FROM project";
+        try {
+            return jdbcTemplate.query(
+                    sql,
+                    (resultSet, rowNum) -> new Project(
+                            resultSet.getString("id"),
+                            resultSet.getString("name"),
+                            resultSet.getString("description")
+                    )
+            );
+        } catch (Exception exp) {
+            exp.printStackTrace();
+        }
+        return null;
+    }
+
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,13 +13,19 @@ import java.util.UUID;
 public class Project implements Serializable {
 
     @Id
-    private final UUID id;
+    private final String id;
 
     @Column(name = "name")
     private final String name;
 
     @Column(name = "description")
     private final String description;
+
+    public Project() {
+        this.id = null;
+        this.name = null;
+        this.description = null;
+    }
 
     @ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
     @JoinTable(
@@ -30,7 +37,7 @@ public class Project implements Serializable {
 
 
     public Project(
-            @JsonProperty("id") UUID id,
+            @JsonProperty("id") String id,
             @JsonProperty("name") String name,
             @JsonProperty("description") String description
     ) {
@@ -40,7 +47,7 @@ public class Project implements Serializable {
     }
 
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
@@ -50,6 +57,14 @@ public class Project implements Serializable {
 
     public String getDescription() {
         return description;
+    }
+
+
+    public void addEmployee(Employee employee) {
+        if (employees == null) {
+            employees = new ArrayList<>();
+        }
+        employees.add(employee);
     }
 
 }

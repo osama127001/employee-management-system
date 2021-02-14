@@ -21,7 +21,6 @@ public class OfficeRepository extends EntityRepository<Office> {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
     @Transactional
     public List<Office> getAllEntities() {
         String sql = "SELECT * FROM office";
