@@ -1,7 +1,10 @@
 package com.employee.ems.dao.derivedRepositories;
 
 import com.employee.ems.dao.EntityRepository;
-import com.employee.ems.model.Employee;
+import com.employee.ems.model.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -14,11 +17,13 @@ import java.util.List;
 public class EmployeeRepository extends EntityRepository<Employee> {
 
     private final JdbcTemplate jdbcTemplate;
+    private final SessionFactory sessionFactory;
 
     @Autowired
     public EmployeeRepository(EntityManagerFactory factory, JdbcTemplate jdbcTemplate) {
         super(factory);
         this.jdbcTemplate = jdbcTemplate;
+        this.sessionFactory = factory.unwrap(SessionFactory.class);
     }
 
     @Transactional
@@ -44,4 +49,118 @@ public class EmployeeRepository extends EntityRepository<Employee> {
         }
         return null;
     }
+
+    public boolean associateEmployeeWithProject(String projectId, String employeeId) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            Employee employee = session.get(Employee.class, employeeId);
+            Project project = session.get(Project.class, projectId);
+            employee.assignProject(project);
+            tx.commit();
+            return true;
+        } catch (Exception exception) {
+            tx.rollback();
+            System.out.println(
+                    exception.getMessage()
+            );
+            exception.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return false;
+    }
+
+    public boolean assignManagerToEmployee(String managerId, String employeeId) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            Employee employee = session.get(Employee.class, employeeId);
+            Employee manager = session.get(Employee.class, managerId);
+            employee.setManager(manager);
+            tx.commit();
+            return true;
+        } catch (Exception exception) {
+            tx.rollback();
+            System.out.println(
+                    exception.getMessage()
+            );
+            exception.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return false;
+    }
+
+    public boolean assignOfficeToEmployee(String officeId, String employeeId) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            Employee employee = session.get(Employee.class, employeeId);
+            Office office = session.get(Office.class, officeId);
+            employee.setOffice(office);
+            tx.commit();
+            return true;
+        } catch (Exception exception) {
+            tx.rollback();
+            System.out.println(
+                    exception.getMessage()
+            );
+            exception.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return false;
+    }
+
+    public boolean assignEmployeeTypeToEmployee(String employeeTypeId, String employeeId) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            Employee employee = session.get(Employee.class, employeeId);
+            EmployeeType employeeType = session.get(EmployeeType.class, employeeTypeId);
+            employee.setEmployeeType(employeeType);
+            tx.commit();
+            return true;
+        } catch (Exception exception) {
+            tx.rollback();
+            System.out.println(
+                    exception.getMessage()
+            );
+            exception.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return false;
+    }
+
+    public boolean assignDepartmentToEmployee(String departmentId, String employeeId) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            Employee employee = session.get(Employee.class, employeeId);
+            Department department = session.get(Department.class, departmentId);
+            employee.setDepartment(department);
+            tx.commit();
+            return true;
+        } catch (Exception exception) {
+            tx.rollback();
+            System.out.println(
+                    exception.getMessage()
+            );
+            exception.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return false;
+    }
+
+
+
+
 }

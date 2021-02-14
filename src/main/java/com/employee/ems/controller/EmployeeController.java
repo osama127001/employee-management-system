@@ -51,6 +51,46 @@ public class EmployeeController {
         return getResponseEntity(optionalResponseUpdate);
     }
 
+    @PutMapping("/{employee_id}/{project_id}")
+    public ResponseEntity<?> associateEmployeeWithProject(@PathVariable("employee_id") String employeeId,
+                                                          @PathVariable("project_id") String projectId) {
+        Optional<Boolean> optionalResponse = Optional
+                .of(employeeService.associateEmployeeWithProject(employeeId, projectId));
+        return getResponseEntity(optionalResponse);
+    }
+
+    @PutMapping("set-manager/{employee_id}/{manager_id}")
+    public ResponseEntity<?> assignManagerToEmployee(@PathVariable("employee_id") String employeeId,
+                                                     @PathVariable("manager_id") String managerId) {
+        Optional<Boolean> optionalResponse = Optional
+                .of(employeeService.assignManagerToEmployee(managerId, employeeId));
+        return getResponseEntity(optionalResponse);
+    }
+
+    @PutMapping("set-office/{office_id}/{employee_id}")
+    public ResponseEntity<?> assignOfficeToEmployee(@PathVariable("office_id") String officeId,
+                                                    @PathVariable("employee_id") String employeeId) {
+        Optional<Boolean> optionalResponse = Optional
+                .of(employeeService.assignOfficeToEmployee(officeId, employeeId));
+        return getResponseEntity(optionalResponse);
+    }
+
+    @PutMapping("set-department/{department_id}/{employee_id}")
+    public ResponseEntity<?> assignDepartmentToEmployee(@PathVariable("department_id") String departmentId,
+                                                        @PathVariable("employee_id") String employeeId) {
+        Optional<Boolean> optionalResponse = Optional
+                .of(employeeService.assignDepartmentToEmployee(departmentId, employeeId));
+        return getResponseEntity(optionalResponse);
+    }
+
+    @PutMapping("set-employee-type/{employee_type_id}/{employee_id}")
+    public ResponseEntity<?> assignEmployeeTypeToEmployee(@PathVariable("employee_type_id") String employeeTypeId,
+                                                          @PathVariable("employee_id") String employeeId) {
+        Optional<Boolean> optionalResponse = Optional
+                .of(employeeService.assignEmployeeTypeToEmployee(employeeTypeId, employeeId));
+        return getResponseEntity(optionalResponse);
+    }
+
     @DeleteMapping("/{employee_id}")
     public ResponseEntity<?> deleteEmployee(@PathVariable("employee_id") String id) {
         Optional<Boolean> optionalResponseUpdate = Optional.of(employeeService.deleteEmployee(id));

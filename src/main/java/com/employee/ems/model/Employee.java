@@ -126,7 +126,7 @@ public class Employee implements Serializable {
         return salary;
     }
 
-    public boolean isActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
@@ -143,6 +143,22 @@ public class Employee implements Serializable {
             projects = new ArrayList<>();
         }
         projects.add(project);
+    }
+
+    public void setManager(Employee manager) {
+        this.manager = manager;
+    }
+
+    public void setOffice(Office office) {
+        this.office = office;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public void setEmployeeType(EmployeeType employeeType) {
+        this.employeeType = employeeType;
     }
 
     @Override

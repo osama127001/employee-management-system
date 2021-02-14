@@ -36,7 +36,7 @@ public class EmployeeService {
                 employee.getDob(),
                 employee.getCv(),
                 employee.getSalary(),
-                employee.isActive(),
+                employee.getIsActive(),
                 employee.getAvailableLeaveDaysPerYear(),
                 employee.getAvailableSickDaysPerYear()
         ));
@@ -50,7 +50,7 @@ public class EmployeeService {
                 employee.getDob(),
                 employee.getCv(),
                 employee.getSalary(),
-                employee.isActive(),
+                employee.getIsActive(),
                 employee.getAvailableLeaveDaysPerYear(),
                 employee.getAvailableSickDaysPerYear()
         ));
@@ -58,5 +58,25 @@ public class EmployeeService {
 
     public boolean deleteEmployee(String id) {
         return employeeRepository.deleteEntity(Employee.class, id);
+    }
+
+    public boolean associateEmployeeWithProject(String employee_id, String project_id) {
+        return employeeRepository.associateEmployeeWithProject(project_id, employee_id);
+    }
+
+    public boolean assignManagerToEmployee(String managerId, String employeeId) {
+        return employeeRepository.assignManagerToEmployee(managerId, employeeId);
+    }
+
+    public boolean assignOfficeToEmployee(String officeId, String employeeId) {
+        return employeeRepository.assignOfficeToEmployee(officeId, employeeId);
+    }
+
+    public boolean assignDepartmentToEmployee(String departmentId, String employeeId) {
+        return employeeRepository.assignDepartmentToEmployee(departmentId, employeeId);
+    }
+
+    public boolean assignEmployeeTypeToEmployee(String employeeTypeId, String employeeId) {
+        return employeeRepository.assignEmployeeTypeToEmployee(employeeTypeId, employeeId);
     }
 }
