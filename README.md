@@ -16,6 +16,12 @@ Following [Resource](https://www.softwareideas.net/a/1565/Employee-Management-Sy
 * `Press E to expand package in Class diagmram`
 * `Use the following tool-bar to show dependencies and other settings.`
 ![UML toolbar](image/uml_tools.png)
+  
+#### Class Diagram
+![Class diagram without dependencies](image/cd_wod.png)
+
+#### Class Diagram with Dependencies
+![Class diagram with dependencies](image/cd_wd.png)
 
 ## Mappings
 
@@ -28,7 +34,11 @@ api/vi/employee | GET | Get All Employees
 api/vi/employee/{employee_id} | GET | Get Employee with given Id
 api/vi/employee | POST |  Insert a new Employee
 api/vi/employee/{employee_id} | PUT | Update an employee having Id 
-api/vi/project/{project_id}/{employee_id} | PUT | Assign project to an employee
+api/vi/project/{employee_id}/{project_id} | PUT | Associate project with an employee
+api/vi/project/set-office/{office_id}/{employee_id} | PUT | Assign office to an employee
+api/vi/project/set-manager/{employee_id}/{manager_id} | PUT | Assign manager to an employee
+api/vi/project/set-department/{department_id}/{employee_id} | PUT | Assign department to an employee
+api/vi/project/set-employee-type/{employee_type_id}/{employee_id} | PUT | Assign employee-type to an employee
 api/vi/employee/{employee_id} | DELETE | Delete an employee having Id
 
 
