@@ -79,4 +79,8 @@ public class EmployeeService {
     public boolean assignEmployeeTypeToEmployee(String employeeTypeId, String employeeId) {
         return employeeRepository.assignEmployeeTypeToEmployee(employeeTypeId, employeeId);
     }
+
+    public Object getAllEmployeeData() {
+        return employeeRepository.getAllEmployeeData();
+    }
 }

@@ -1,5 +1,6 @@
 package com.employee.ems;
 
+import com.employee.ems.dao.derivedRepositories.EmployeeRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

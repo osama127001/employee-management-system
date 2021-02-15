@@ -32,11 +32,16 @@ public class EmployeeController {
         return getResponseEntity(optionalEmployees);
     }
 
-
     @GetMapping("/{employee_id}")
     public ResponseEntity<?> getEmployee(@PathVariable("employee_id") String id) {
         Optional<Employee> optionalEmployee = Optional.ofNullable(employeeService.getEmployee(id));
         return getResponseEntity(optionalEmployee);
+    }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<?> getAllEmployeeData() {
+        Optional<Object> data = Optional.ofNullable(employeeService.getAllEmployeeData());
+        return getResponseEntity(data);
     }
 
     @PostMapping("/")
